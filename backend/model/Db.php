@@ -15,6 +15,11 @@ class Db
     private static $dbnam    = 'w37_psz';
     private static $instance;
 
+    private function __construct()
+    {
+
+    }
+    
     public static function connect()
     {
         $dsn = self::$dbtype . ':host=' . self::$host. ':' . self::$port
