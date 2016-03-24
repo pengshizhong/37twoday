@@ -10,7 +10,6 @@ use vendor\MyException;
  */
 class User extends Util
 {
-    public $username;
     public $password;
     public $birth;
     public $register_time;
