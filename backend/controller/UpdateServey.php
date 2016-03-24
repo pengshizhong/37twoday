@@ -23,7 +23,7 @@ class Updatesurvey extends Action
         $survey->update(['survey_id' => $survey->id]);
         $output = new Output();
         $output->code = 0;
-        $output->msg = '增加新问卷成功';
+        $output->msg = '修改新问卷成功';
         $output->transport();
     }
 }
