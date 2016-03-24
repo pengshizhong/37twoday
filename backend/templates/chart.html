@@ -6,16 +6,15 @@
     <!--<script src="/js/highcharts.js"></script>-->
     <script src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
     <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
-    <script src="http://cdn.hcharts.cn/highstock/highstock.js"></script>
-    <script src="http://cdn.hcharts.cn/highmaps/highmaps.js"></script>
+    <!--<script src="http://cdn.hcharts.cn/highstock/highstock.js"></script>
+    <script src="http://cdn.hcharts.cn/highmaps/highmaps.js"></script> -->
 </head>
 
 
 <div id="container1"></div>
-
 <script>
     function draw(divid,$data) {
-        $('#'+ divid).highcharts({
+        $("#"+divid).highcharts({
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
@@ -59,11 +58,22 @@
             }]
         });
     }
-    var data=<{$data['count']}>;
-    var total=<{$data['total']}>;
-    //draw('container', data[1]);
-    for (var i=1;i<=data.length;i++) {
+    var data= <{$data['count']}>;
+    var total= <{$data['total']}>;
+    var a = eval("("+data+")");
+    //draw('container1', data[1]);
+    var i = 0;
+    console.log(a);
+    while(i <= 4)
+    {
+
+        draw('container' + i,data[i]);
+        i++;
+    }
+    for (var i=1;i <= data.length;i++) {
+        console.log("ok");
         draw('container' + i,data[i]);
     }
 </script>
+
 </html>

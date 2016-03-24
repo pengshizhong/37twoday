@@ -55,6 +55,7 @@ class Register extends Action
          $verify = I('get.verify');
          $verify_user = strtolower($verify);
          $verify_session = strtolower($_SESSION['verify']);
+         echo $verify_session;die;
          if(($verify_user != $verify_session) || empty($verify_session))
          {
              unset($_SESSION['verify']);
