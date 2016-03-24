@@ -1,10 +1,10 @@
 <?php
 namespace controller;
 /**
- * 登陆接口
+ * 注册接口
  * v1.0
  * @author 叶子彬
- * @version2016年3月24号
+ * @version 2016年3月24号
  * 
  */
 use model\User;
@@ -48,7 +48,7 @@ class Register extends Action
         }
         
         //验证码验证
-        $verify = trim($_POST['verify']);
+        $verify = I('post.verify');
         $verify_user = strtolower($verify);
         $verify_session = strtolower($_SESSION['verify']);
         if(($verify_user != $verify_session) || empty($verify_session))
@@ -62,6 +62,8 @@ class Register extends Action
         $salt = salt();
         $password = md5($password.$salt);
         $time = time();
+        $register_time = date("Y-m-d H:i:m");
+        $last_modfied_time = date("Y-m-d H:i:m");
         $user->work_id = $workid;
         $user->password = $password;
         $res = $user->save();
@@ -87,7 +89,6 @@ class Register extends Action
         if(self::$me->get($workid)){
             output(1, 0, self::$me->get($workid));
         }
-        //$sql = "SELECT id FROM w37_user where username='{$workid}'";
         $where = array(
             'WORK_ID' => $workid
         );
