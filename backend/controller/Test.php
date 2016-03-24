@@ -8,7 +8,7 @@ use vendor\Output;
 
 class Test extends Action
 {
-    public function run(Output $output)
+    public function run()
     {
         $user = new User();
 //        insert demo

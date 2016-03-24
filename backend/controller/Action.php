@@ -13,7 +13,7 @@ class Action
     public static $M; //数据库对象
     public static $me; //memcache对象
 
-    public function run(Output $output)
+    public function run()
     {
 
     }
