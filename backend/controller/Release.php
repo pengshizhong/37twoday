@@ -23,7 +23,7 @@ class Release extends Action
         $survey_id = 22;
         $survey = new Survey();
         $survey = $survey->select(['survey_id' => $survey_id]);
-        var_dump($survey);
+        // var_dump($survey);
         $tmp = $this->getJson($survey->value);
 
     }
