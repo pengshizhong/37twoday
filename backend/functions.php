@@ -299,9 +299,12 @@ function I($data)
     $arr = explode('.', $data);
     $res = '';
     if($arr[0] == 'post'){
-        $res = trim($_POST[$arr[1]]);
+        $res = trim(@$_POST[$arr[1]]);
     }elseif($arr[0] == 'get'){
-        $res = trim($_GET[$arr[1]]);
+        $res = trim(@$_GET[$arr[1]]);
+    }
+    if(empty($res)){
+        return false;
     }
     $res = addslashes($res);
     $res = htmlspecialchars($res);

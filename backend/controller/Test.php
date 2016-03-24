@@ -19,7 +19,7 @@ class Test extends Action
         $user->number=md5(date("Y-m-d H-i:s"));
         $user->mail='523724329@qq.com';
         $flag = $user->save();
-
+        $a = I("post.a");
 
 //select demo
 //        $user = $user->select(['id' => '91']);
