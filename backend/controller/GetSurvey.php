@@ -20,7 +20,7 @@ class GetSurvey
 {
     public function run()
     {
-        $survey_id = I('get.survey_id');
+        $survey_id = I('get.surveyid');
         if($survey_id == false) {
             exit;
         }
@@ -28,7 +28,12 @@ class GetSurvey
         $survey = $survey->select(['survey_id' => $survey_id]);
         $tmp = stripslashes($survey->value);
         $tmp = json_decode($tmp,true);
-        $tmp['survey_id'] = $survey_id;
-        output(0,$tmp,'');
+        if(isset($tmp['isrelease']) && $tmp['isrelease'] == true) {
+            $tmp['survey_id'] = $survey_id;
+            output(0, $tmp, '');
+        }
+        else {
+            output(1, '', '该问卷未发布');
+        }
     }
 }

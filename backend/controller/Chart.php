@@ -13,10 +13,10 @@ class Chart extends Action
 {
     public function run()
     {
-        $data = I('get.data');
+        $data = I('post.data');
         $data = stripcslashes($data);
         $data = json_decode($data,true);
-        $survey_id = $data['survey_id'];
+        $survey_id = $data['surveyid'];
         $survey = new Answer();
         $tmp = $survey->select();
         $this->analyze($tmp, $survey_id);
