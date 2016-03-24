@@ -14,7 +14,7 @@ use vendor\Output;
 
 class VisitorCommit extends Action
 {
-    public function run(Output $output)
+    public function run()
     {
         $data = I('post.data');
         if (empty($data)) {
@@ -22,7 +22,7 @@ class VisitorCommit extends Action
         }
 
         $answer = new answer();
-        $answer->value = $data;
+        $answer->answer_value = $data;
         $answer->save();
 
         output(0,'','游客提交成功');
