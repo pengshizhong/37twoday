@@ -62,7 +62,10 @@ class Memcache
         self::$instance->add($key, $value);
     }
     
-    public static function 
+    public static function get($key)
+    {
+        return self::$instance->get($key);
+    }
     
 }
 
