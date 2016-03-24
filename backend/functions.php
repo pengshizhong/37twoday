@@ -326,3 +326,15 @@ function C($value)
     }else return $config[$key[0]];
 }
 
+/**
+ * 是否登陆
+ * @return boolean|unknown
+ */
+function is_login()
+{
+    $info = $_SESSION['workid'];
+    if(empty($info))
+    {
+        return false;
+    }else return $info;
+}

@@ -15,8 +15,8 @@ class User extends Util
     public $birth;
     public $register_time;
     public $mail;
-    public $number = 12;
     public $id;
+    public $salt;
 
     //时间类型
     public function __construct()

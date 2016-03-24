@@ -49,7 +49,6 @@ class Action
         self::$s->left_delimiter = C("smarty.left_delimiter");
         self::$s->right_delimiter = C("smarty.right_delimiter");
         self::$me = new \Memcache;
-        //var_dump(self::$me);
         $host = C("memcache.host");
         $port = C("memcache.port");
         self::$me->connect($host,$port,MEMCACHE_COMPRESSED);

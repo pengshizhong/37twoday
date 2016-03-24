@@ -15,6 +15,11 @@ class Register extends Action
 {
     public function run()
     {
+        $res = $this->checkIp(40);
+         if(!$res)
+         {
+             output(6, 0, "注册用户名修改频繁");
+         }
         $workid = I("get.workid");
         $password = I("get.password");
         $comfirm_password = I("get.comfirm_password");
@@ -23,9 +28,13 @@ class Register extends Action
         //账号验证
         $id = $this->getName();
         if($id){
-            $output->code = 1;
-            $output->msg = '用户名已被使用';
-            $output->transport();
+            output(1, 0, '用户名已被使用');
+        }
+        
+        //密码验证
+        $password_len = strlen($password);
+        if ( !preg_match('/^[a-zA-Z0-9\_]{6,20}$/', $password) ) {
+            output(8, 0, '密码格式不正确!');
         }
         
         //工号验证
@@ -41,17 +50,16 @@ class Register extends Action
         }
         //验证码验证
         
-        $verify = I('post.verify');
-        $verify_user = strtolower($verify);
-        $verify_session = strtolower($_SESSION['verify']);
-        echo $verify_session;
-        if(($verify_user != $verify_session) || empty($verify_session))
-        {
-            //unset($_SESSION['verify']);
-            $output->code = 4;
-            $output->msg = '需要验证码';
-            $output->transport();
-        }
+//         $verify = I('post.verify');
+//         $verify_user = strtolower($verify);
+//         $verify_session = strtolower($_SESSION['code']);
+//         if(($verify_user != $verify_session) || empty($verify_session))
+//         {
+//             //unset($_SESSION['verify']);
+//             $output->code = 4;
+//             $output->msg = '需要验证码';
+//             $output->transport();
+//         }
         //unset($_SESSION['verify']);
         $salt = salt();
         $password = md5($password.$salt);
@@ -60,6 +68,7 @@ class Register extends Action
         $last_modfied_time = date("Y-m-d H:i:m");
         $user->work_id = $workid;
         $user->password = $password;
+        $user->salt = $salt;
         $res = $user->save();
         if($res)
         {
@@ -68,6 +77,7 @@ class Register extends Action
                 'time'     => $time
             );
             $_SESSION['workid'] = $info;
+            
             self::$me->add($workid, $workid);
             output(0, $info, "成功注册");
         }else {
@@ -96,6 +106,47 @@ class Register extends Action
             self::$me->set($workid, $workid, MEMCACHE_COMPRESSED, 3600*24);
         }
         return $id;
+    }
+    
+    /**
+     * 防刷逻辑
+     * @param number $num
+     * @param number $expire
+     */
+    private function checkIp($num=3, $expire=60)
+    {
+        $ip = get_real_ip();
+        $cache = self::$me->get($ip);
+        if(empty($cache))
+        {
+            $arr = array(
+                'ip' => $ip,
+                'num' => 1,
+                'time' => time()
+            );
+            self::$me->set($ip, $arr, MEMCACHE_COMPRESSED, $expire);
+            return true;
+        }else {
+            $cache_time = intval($cache['time']);
+            $now = time();
+            $range = $now - $cache_time;
+            if($range < $expire)
+            {
+                if($cache['num'] > $num)
+                {
+                    return false;
+                }else{
+                    $cache['num'] += 1;
+                    self::$me->set($ip, $cache);
+                    return true;
+                }
+            }else{
+                $cache['time'] = time();
+                $cache['num'] = 1;
+                self::$me->set($ip, $cache);
+                return true;
+            }
+        }
     }
 }
 
