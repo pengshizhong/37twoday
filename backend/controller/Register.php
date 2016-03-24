@@ -15,14 +15,11 @@ class Register extends Action
 {
     public function run()
     {
-        $workid = I("post.workid");
-        $password = I("post.password");
-        $comfirm_password = I("post.comfirm_password");
+        $workid = I("get.workid");
+        $password = I("get.password");
+        $comfirm_password = I("get.comfirm_password");
         $user = new User();
-        $res = $user->select(['workid' => $workid]);
-        $output = new Output();
-        
-        $output->transport();
+        $res = $user->select(['WORK_ID' => $workid]);
         //账号验证
         $id = $this->getName();
         if($id){
@@ -36,29 +33,26 @@ class Register extends Action
         $num_len = strlen($workid);
         if(!$res_num)
         {
-            $output->code = 2;
-            $output->msg = '工号必须为正整数';
-            $output->transport();
+            output(2, 0, '工号必须为正整数');
         }
         if($num_len <3 || $num_len > 9)
         {
-            $output->code = 3;
-            $output->msg = '工号长度必须在3-9位之间';
-            $output->transport();
+            output(3, 0, '工号长度必须在3-9位之间');
         }
-        
         //验证码验证
+        
         $verify = I('post.verify');
         $verify_user = strtolower($verify);
         $verify_session = strtolower($_SESSION['verify']);
+        echo $verify_session;
         if(($verify_user != $verify_session) || empty($verify_session))
         {
-            unset($_SESSION['verify']);
+            //unset($_SESSION['verify']);
             $output->code = 4;
             $output->msg = '需要验证码';
             $output->transport();
         }
-        unset($_SESSION['verify']);
+        //unset($_SESSION['verify']);
         $salt = salt();
         $password = md5($password.$salt);
         $time = time();
@@ -86,12 +80,16 @@ class Register extends Action
     {
         $user = new User();
         $workid = I("post.workid");
-        if(self::$me->get($workid)){
-            output(1, 0, self::$me->get($workid));
+        
+        if(@self::$me->get($workid)){
+            
+            output(1, 0, "重复注册");
         }
+        
         $where = array(
             'WORK_ID' => $workid
         );
+        
         $id = $user->select($where);
         if(!empty($id))
         {
