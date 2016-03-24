@@ -21,11 +21,11 @@ class AddSurvey extends Action
            exit;
         }
         $survey = new Survey();
-        $survey->value = $data;
+        $survey->value = stripcslashes($data);
         $survey->save();
         $survey_id = $survey->getLastId();
         $data = [];
-        $url = 'index.php?action=getSurvey&survey_id=' . $survey_id;
+        $url = 'index.php?action=getSurvey&surveyid=' . $survey_id;
         $data['url'] = $url;
         output(1,$data,'增加新问卷成功');
     }

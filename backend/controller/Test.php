@@ -10,7 +10,7 @@ class Test extends Action
 {
     public function run()
     {
-//        var_dump($_SESSION);
+ var_dump($_SESSION);
 //        file_put_contents('text.txt','my_tesd    ',FILE_APPEND);
 //        $user = new User();
 ////        insert demo

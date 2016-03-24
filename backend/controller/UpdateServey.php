@@ -15,7 +15,7 @@ class Updatesurvey extends Action
     {
         $data = I('post.data');
         $data = json_decode($data,true);
-        $survey_id = $data['survey_id'];
+        $survey_id = $data['surveyid'];
         $survey = new survey();
         $survey->survey_id = $survey_id;
         unset($data['survey_id']);
