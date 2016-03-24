@@ -13,7 +13,7 @@ use vendor\Output;
 class Register extends  Action
 {
     private $authcode_url = 'http://peixun.psz.com/index.php?action=authcode';
-    public function run(Output $output)
+    public function run()
     {
         if (isset($_POST['authcode'])) {
             if ($_SESSION['code'] !== strtoupper($_POST['authcode'])){

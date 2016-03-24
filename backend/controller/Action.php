@@ -13,7 +13,7 @@ class Action
     public static $M; //数据库对象
     public static $me; //memcache对象
 
-    public function run(Output $output)
+    public function run()
     {
 
     }
@@ -22,7 +22,7 @@ class Action
     {
         if ($tpl==='') {
             //var_dump('view/' . substr(static::class,'11') . '.php');
-            require 'view/' . substr(static::class, '11') . '.php';
+            require 'view/' . substr(static::$class, '11') . '.php';
         }
         else {
             require 'view/' . $tpl . '.php';
