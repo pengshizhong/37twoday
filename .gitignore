@@ -1,1 +1,5 @@
 .idea
+backend/.buildpath
+backend/.settings
+backend/.project
+templates_c
