@@ -43,7 +43,7 @@ class Util
 
     public function getTableName()
     {
-        $classname = strtolower(str_replace('model\\','',static::class));
+        $classname = strtolower(str_replace('model\\','',get_called_class()));
         return $classname;
     }
 
@@ -98,8 +98,9 @@ class Util
         $sql = $sql . ' 1=1';
         $result = Db::query($sql, $tmp);
         $num = count($result);
+        $class_name = get_called_class();
         //var_dump($result);
-        $class_name = static::class;
+        $class_name = get_called_class();
         switch ($num){
             case 0 : return false;
                           break;
