@@ -306,7 +306,7 @@ function I($data)
     if(empty($res)){
         return false;
     }
-    //$res = addslashes($res);
+    $res = addslashes($res);
     //$res = htmlspecialchars($res);
     return $res;
 }
@@ -325,3 +325,4 @@ function C($value)
         return $config[$key[0]][$key[1]];
     }else return $config[$key[0]];
 }
+
