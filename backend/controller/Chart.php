@@ -8,28 +8,64 @@
 
 namespace controller;
 
-
-use model\Survey;
-
+use model\Answer;
 class Chart extends Action
 {
     public function run()
     {
-        $data = I('post.data');
-        $data = json_decode($data, true);
+        $data = I('get.data');
+        $data = stripcslashes($data);
+        $data = json_decode($data,true);
         $survey_id = $data['survey_id'];
-        $survey = new answer();
+        $survey = new Answer();
         $tmp = $survey->select();
-        //var_dump($tmp);
-
         $this->analyze($tmp, $survey_id);
-
     }
 
     private function analyze($tmp, $survey_id)
     {
+        $count = [];
         foreach ($tmp as $survey) {
-            var_dump($survey);
+            $survey = stripcslashes($survey->answer_value);
+            $survey = json_decode($survey, true);
+            if ($survey['survey_id'] == $survey_id) {
+                $answers = $survey['answers'];
+                foreach ($answers as $qid => $answer) {
+                    //var_dump($answer);
+                    switch ($answer['qtype']) {
+                        case 1: if (array_key_exists($qid, $count)) {
+                                    if (is_array($count[$qid]) && array_key_exists($answer['option'], $count[$qid])) {
+                                        $count[$qid][$answer['option']]++;
+                                    }
+                                    else {
+                                        $count[$qid][$answer['option']] = 1;
+                                    }
+                                }
+                                else {
+                                    $count[$qid] = [];
+                                    $count[$qid][$answer['option']] = 1;
+                                }
+                                break;
+
+                        case 2: foreach ($answer['option'] as $option) {
+                                    if (array_key_exists($qid, $count)) {
+                                        if (is_array($count[$qid]) && array_key_exists($option, $count[$qid])) {
+                                            $count[$qid][$option]++;
+                                        }
+                                        else {
+                                            $count[$qid][$option] = 1;
+                                        }
+                                    }
+                                    else {
+                                        $count[$qid] = [];
+                                        $count[$qid][$option] = 1;
+                                    }
+                                }
+                                break;
+                    }
+                }
+            }
         }
+        output(0,$count,'');
     }
 }
