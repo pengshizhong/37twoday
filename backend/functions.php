@@ -306,7 +306,7 @@ function I($data)
     if(empty($res)){
         return false;
     }
-    $res = addslashes($res);
+    //$res = addslashes($res);
     //$res = htmlspecialchars($res);
     return $res;
 }
