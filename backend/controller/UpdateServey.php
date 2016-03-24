@@ -9,20 +9,20 @@
 namespace controller;
 
 
-class UpdateServey extends Action
+class Updatesurvey extends Action
 {
     public function run()
     {
         $data = I('post.data');
-        $servey_id = json_decode($data,true);
-        $servey = new servey();
-        $servey->id = $servey_id;
-        unset($data['servey_id']);
-        $servey->value = $data;
-        $servey->update(['servey_id' => $servey->id]);
-
+        $data = json_decode($data,true);
+        $survey_id = $data['survey_id'];
+        $survey = new survey();
+        $survey->survey_id = $survey_id;
+        unset($data['survey_id']);
+        $survey->value = $data;
+        $survey->update(['survey_id' => $survey->id]);
         $output = new Output();
-        $output->code = 1;
+        $output->code = 0;
         $output->msg = '增加新问卷成功';
         $output->transport();
     }

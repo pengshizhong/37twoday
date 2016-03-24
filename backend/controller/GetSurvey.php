@@ -8,6 +8,8 @@
 
 namespace controller;
 
+use model\Survey;
+
 /**
  * Class GetSurvey
  * @package controller
@@ -17,6 +19,12 @@ class GetSurvey
 {
     public function run()
     {
-        
+        $survey_id = I('get.survey_id');
+        if($survey_id == false) {
+            exit;
+        }
+        $survey = new Survey();
+        $survey = $survey->select(['survey_id' => $survey_id]);
+        var_dump($survey);
     }
 }

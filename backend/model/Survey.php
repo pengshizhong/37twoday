@@ -11,6 +11,6 @@ namespace model;
 
 class Survey extends Util
 {
-    public $servey_id;
+    public $survey_id;
     public $value;
 }
