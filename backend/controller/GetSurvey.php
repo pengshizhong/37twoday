@@ -9,6 +9,7 @@
 namespace controller;
 
 use model\Survey;
+use vendor\Output;
 
 /**
  * Class GetSurvey
@@ -25,6 +26,9 @@ class GetSurvey
         }
         $survey = new Survey();
         $survey = $survey->select(['survey_id' => $survey_id]);
-        var_dump($survey);
+        $tmp = stripslashes($survey->value);
+        $tmp = json_decode($tmp,true);
+        $tmp['survey_id'] = $survey_id;
+        output(0,$tmp,'');
     }
 }

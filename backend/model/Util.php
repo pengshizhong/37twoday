@@ -86,20 +86,24 @@ class Util
         return Db::query($sql, $tmp ,false);
     }
 
-    public function select(array $where)
+    public function select($where = '')
     {
         $table_name = $this->getTableName();
-        $sql  = 'SELECT * FROM ' . $table_name . ' WHERE ';
-        $tmp = [];
-        foreach ($where as $key => $value) {
-            $tmp[':' . $key] = $value;
-            $sql = $sql . $key . '=:' . $key . ' and';
+        $sql  = 'SELECT * FROM ' . $table_name;
+        if (is_array($where)) {
+            $sql = $sql . ' WHERE ';
+            $tmp = [];
+            foreach ($where as $key => $value) {
+                $tmp[':' . $key] = $value;
+                $sql = $sql . $key . '=:' . $key . ' and';
+            }
+            $sql = $sql . ' 1=1';
         }
-        $sql = $sql . ' 1=1';
+        else {
+            $tmp = [];
+        }
         $result = Db::query($sql, $tmp);
         $num = count($result);
-        $class_name = get_called_class();
-        //var_dump($result);
         $class_name = get_called_class();
         switch ($num){
             case 0 : return false;
@@ -125,6 +129,11 @@ class Util
                          }
                          return $objects;
         }
+    }
+
+    public function getLastId()
+    {
+        return Db::getLastId();
     }
 
 }

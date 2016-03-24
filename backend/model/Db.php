@@ -58,6 +58,10 @@ class Db
         }
     }
 
+    public static function getLastId()
+    {
+        return self::$instance->lastInsertId();
+    }
 //    public static function queryNoPrepare($sql)
 //    {
 //        if (!self::$instance) {

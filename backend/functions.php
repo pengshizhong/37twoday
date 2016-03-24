@@ -325,3 +325,4 @@ function C($value)
         return $config[$key[0]][$key[1]];
     }else return $config[$key[0]];
 }
+

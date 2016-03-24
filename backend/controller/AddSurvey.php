@@ -20,13 +20,13 @@ class AddSurvey extends Action
         if (empty($data)) {
            exit;
         }
-        $servey = new Survey();
-        $servey->value = $data;
-        $servey->save();
-
-        $output = new Output();
-        $output->code = 0;
-        $output->msg = '增加新问卷成功';
-        $output->transport();
+        $survey = new Survey();
+        $survey->value = $data;
+        $survey->save();
+        $survey_id = $survey->getLastId();
+        $data = [];
+        $url = 'index.php?action=getSurvey&survey_id=' . $survey_id;
+        $data['url'] = $url;
+        output(1,$data,'增加新问卷成功');
     }
 }
