@@ -54,4 +54,11 @@ class Action
         $port = C("memcache.port");
         self::$me->connect($host,$port,MEMCACHE_COMPRESSED);
     }
+
+    public function getJson($data,$isarray=false)
+    {
+        $data = stripcslashes($data);
+        return json_decode($data, $isarray);
+    }
+
 }
