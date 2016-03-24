@@ -15,7 +15,10 @@ class AddSurvey extends Action
 {
     public function run()
     {
-        $data = I('post.data');
+        $data = I('get.data');
+        if (empty($data)) {
+           exit;
+        }
         $servey = new servey();
         $servey->value = $data;
         $servey->insert();
