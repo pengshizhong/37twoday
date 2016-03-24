@@ -19,7 +19,7 @@ class Register extends Action
         $password = I("post.password");
         $comfirm_password = I("post.comfirm_password");
         $user = new User();
-        $res = $user->select(['USER_ID' => 1]);
+        $res = $user->select(['workid' => $workid]);
         $output = new Output();
         
         $output->transport();

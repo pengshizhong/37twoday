@@ -99,14 +99,18 @@ class Util
         $result = Db::query($sql, $tmp);
         $num = count($result);
         $class_name = get_called_class();
+        //var_dump($result);
+        $class_name = get_called_class();
         switch ($num){
             case 0 : return false;
                           break;
 
             case 1: $result = $result[0];
                           $tmp = new $class_name;
-                          foreach ($tmp as $key => $value) {
-                              $tmp->$key = $result[$key];
+                          foreach ($result as $key => $value) {
+                              $pro_name = strtolower($key);
+                              //var_dump($pro_name);
+                              $tmp->$pro_name = $result[$key];
                           }
                           return $tmp;
 
@@ -114,7 +118,8 @@ class Util
                          foreach ($result as $object) {
                              $tmp = new $class_name;
                              foreach ($object as $key => $value) {
-                                 $tmp->$key = $object[$key];
+                                 $pro_name = strtolower($key);
+                                 $tmp->$pro_name = $object[$key];
                              }
                              $objects[] = $tmp;
                          }
