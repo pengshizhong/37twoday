@@ -13,7 +13,7 @@ class Chart extends Action
 {
     public function run()
     {
-        $data = I('post.data');
+        $data = I('get.data');
         $data = stripcslashes($data);
         $data = json_decode($data,true);
         $survey_id = $data['surveyid'];
@@ -25,13 +25,13 @@ class Chart extends Action
     private function analyze($tmp, $survey_id)
     {
         $count = [];
+        $count['total'] = count($tmp);
         foreach ($tmp as $survey) {
             $survey = stripcslashes($survey->answer_value);
             $survey = json_decode($survey, true);
             if ($survey['survey_id'] == $survey_id) {
                 $answers = $survey['answers'];
                 foreach ($answers as $qid => $answer) {
-                    //var_dump($answer);
                     switch ($answer['qtype']) {
                         case 1: if (array_key_exists($qid, $count)) {
                                     if (is_array($count[$qid]) && array_key_exists($answer['option'], $count[$qid])) {
@@ -66,6 +66,13 @@ class Chart extends Action
                 }
             }
         }
-        output(0,$count,'');
+        //$this->getView($count,'index.html');
+        $data = [];
+        $data['total'] = $count['total'];
+        unset($count['total']);
+        $data['count'] = json_encode($count);
+//        var_dump($count);
+        self::$s->assign("data", $data);
+        self::$s->display('chart.html');
     }
 }
