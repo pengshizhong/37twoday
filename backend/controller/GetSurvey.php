@@ -26,16 +26,9 @@ class GetSurvey
         }
         $survey = new Survey();
         $survey = $survey->select(['survey_id' => $survey_id]);
-        //echo $survey->value;
-        //$data = myJsonDecode($survey->value,false);
-        var_dump($survey->value);
-        var_dump(stripslashes($survey->value));
-        $data = json_decode($survey->value,true);
-        var_dump($data);
-//        $data['survey_id'] = $survey_id;
-//        var_dump($data);
-
-
-        //var_dump($survey);
+        $tmp = stripslashes($survey->value);
+        $tmp = json_decode($tmp,true);
+        $tmp['survey_id'] = $survey_id;
+        output(0,$tmp,'');
     }
 }
