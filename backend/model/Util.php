@@ -126,4 +126,9 @@ class Util
         }
     }
 
+    public function getLastId()
+    {
+        return Db::getLastId();
+    }
+
 }
