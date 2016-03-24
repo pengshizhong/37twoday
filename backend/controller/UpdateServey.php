@@ -13,6 +13,17 @@ class UpdateServey extends Action
 {
     public function run()
     {
-        
+        $data = I('post.data');
+        $servey_id = json_decode($data,true);
+        $servey = new servey();
+        $servey->id = $servey_id;
+        unset($data['servey_id']);
+        $servey->value = $data;
+        $servey->update(['servey_id' => $servey->id]);
+
+        $output = new Output();
+        $output->code = 1;
+        $output->msg = '增加新问卷成功';
+        $output->transport();
     }
 }

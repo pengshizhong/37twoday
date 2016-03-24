@@ -9,15 +9,20 @@
 namespace controller;
 
 
+use vendor\Output;
+
 class AddSurvey extends Action
 {
     public function run()
     {
         $data = I('post.data');
-        $data = [
-            'userid' => 1,
-            'survey' => 'surveyname',
-        ];
+        $servey = new servey();
+        $servey->value = $data;
+        $servey->insert();
 
+        $output = new Output();
+        $output->code = 1;
+        $output->msg = '增加新问卷成功';
+        $output->transport();
     }
 }
