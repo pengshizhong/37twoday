@@ -24,11 +24,6 @@ class User extends Util
         $this->register_time = date('Y-m-d H:i:s');
     }
 
-    public function select()
-    {
-
-    }
-
     public function save()
     {
         $this->encypt();

@@ -1,5 +1,7 @@
 <?php
 namespace model;
+use vendor\MyException;
+
 /**
  * Class Db
  * @package db
@@ -19,7 +21,7 @@ class Db
     {
 
     }
-    
+
     public static function connect()
     {
         $dsn = self::$dbtype . ':host=' . self::$host. ':' . self::$port
@@ -36,27 +38,41 @@ class Db
         }
     }
 
-    public static function query($sql, $data)
+    public static function query($sql, $data='', $isselect=true)
     {
         if (!self::$instance) {
             self::connect();
         }
         $stmt = self::$instance->prepare($sql);
-        if (!$stmt->execute($data)) {
-            return false;
+        $result = $stmt->execute($data);
+        if ($result === false) {
+            $info = $stmt->errorInfo();
+            //var_dump($info);
+            throw new MyException($info[2] , $info[0]);
         }
-        return true;
+        else {
+            if($isselect === false) {
+                return true;
+            }
+            else {
+                $stmt->setFetchMode(\PDO::FETCH_ASSOC);    //设置结果集返回格式,此处为关联数组,即不包含index下标
+                $result = $stmt->fetchAll();
+                //var_dump($result);
+                return $result;
+            }
+        }
     }
 
-    public static function queryNoPrepare($sql)
-    {
-        if (!self::$instance) {
-            self::connect();
-        }
-        $query = self::$instance->query($sql);
-        $query->setFetchMode(\PDO::FETCH_ASSOC);    //设置结果集返回格式,此处为关联数组,即不包含index下标
-        $result = $query->fetchAll();
-        return $result;
-    }
+//    public static function queryNoPrepare($sql)
+//    {
+//        if (!self::$instance) {
+//            self::connect();
+//        }
+//        self::$instance->query($sql);
+//        if (self::$instance->errorCode()!='00000') {
+//            return
+//        }
+//        return true;
+//    }
 
 }

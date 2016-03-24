@@ -29,7 +29,7 @@ class Util
 
     public function save()
     {
-        $classname = strtolower(str_replace('db\\','',static::class));
+        $classname = $this->getTableName();
         $sql = 'INSERT INTO ' . $classname . ' SET ';
         foreach ($this as $key => $value) {
             if (!empty($value)) {
@@ -38,7 +38,13 @@ class Util
         }
         $sql = substr($sql, 0, strlen($sql)-1);
         $data = $this->getBindData();
-        return Db::query($sql, $data);
+        return Db::query($sql, $data,false);
+    }
+
+    public function getTableName()
+    {
+        $classname = strtolower(str_replace('model\\','',static::class));
+        return $classname;
     }
 
     public function getBindData()
@@ -51,4 +57,69 @@ class Util
         }
         return $data;
     }
+
+    public function update()
+    {
+        $table_name = $this->getTableName();
+        $sql = 'UPDATE ' . $table_name . ' SET ';
+        foreach ($this as $key => $value) {
+            if (!empty($value)) {
+                $sql = $sql . $key . '=:' . $key . ',';
+            }
+        }
+        $sql = substr($sql, 0, strlen($sql)-1);
+        $sql = $sql . ' WHERE id=:id';
+        $data = $this->getBindData();
+        return Db::query($sql, $data, false);
+    }
+
+    public function delete(array $where=[])
+    {
+        $table_name = $this->getTableName();
+        $sql = 'DELETE FROM ' . $table_name . ' WHERE ';
+        $tmp = [];
+        foreach ($where as $key => $value) {
+                $sql = $sql . $key . '=:' . $key . ' AND ';
+                $tmp[':' . $key] = $value;
+        }
+        $sql = $sql . ' 1=1 ';
+        return Db::query($sql, $tmp ,false);
+    }
+
+    public function select(array $where)
+    {
+        $table_name = $this->getTableName();
+        $sql  = 'SELECT * FROM ' . $table_name . ' WHERE ';
+        $tmp = [];
+        foreach ($where as $key => $value) {
+            $tmp[':' . $key] = $value;
+            $sql = $sql . $key . '=:' . $key . ' and';
+        }
+        $sql = $sql . ' 1=1';
+        $result = Db::query($sql, $tmp);
+        $num = count($result);
+        $class_name = static::class;
+        switch ($num){
+            case 0 : return false;
+                          break;
+
+            case 1: $result = $result[0];
+                          $tmp = new $class_name;
+                          foreach ($tmp as $key => $value) {
+                              $tmp->$key = $result[$key];
+                          }
+                          return $tmp;
+
+            default:     $objects = [];
+                         foreach ($result as $object) {
+                             $tmp = new $class_name;
+                             foreach ($object as $key => $value) {
+                                 $tmp->$key = $object[$key];
+                             }
+                             $objects[] = $tmp;
+                         }
+                         return $objects;
+        }
+    }
+
 }
