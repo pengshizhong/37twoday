@@ -9,7 +9,7 @@
 namespace model;
 
 
-class Servey extends Util
+class Survey extends Util
 {
     public $servey_id;
     public $value;

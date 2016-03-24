@@ -9,6 +9,7 @@
 namespace controller;
 
 
+use model\Survey;
 use vendor\Output;
 
 class AddSurvey extends Action
@@ -19,9 +20,9 @@ class AddSurvey extends Action
         if (empty($data)) {
            exit;
         }
-        $servey = new servey();
+        $servey = new Survey();
         $servey->value = $data;
-        $servey->insert();
+        $servey->save();
 
         $output = new Output();
         $output->code = 1;
