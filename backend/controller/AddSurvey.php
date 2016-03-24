@@ -25,7 +25,7 @@ class AddSurvey extends Action
         $servey->save();
 
         $output = new Output();
-        $output->code = 1;
+        $output->code = 0;
         $output->msg = '增加新问卷成功';
         $output->transport();
     }
