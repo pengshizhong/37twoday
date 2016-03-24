@@ -48,19 +48,20 @@ class Register extends Action
         {
             output(3, 0, '工号长度必须在3-9位之间');
         }
+
+
         //验证码验证
         
-//         $verify = I('post.verify');
-//         $verify_user = strtolower($verify);
-//         $verify_session = strtolower($_SESSION['code']);
-//         if(($verify_user != $verify_session) || empty($verify_session))
-//         {
-//             //unset($_SESSION['verify']);
-//             $output->code = 4;
-//             $output->msg = '需要验证码';
-//             $output->transport();
-//         }
-        //unset($_SESSION['verify']);
+         $verify = I('get.verify');
+         $verify_user = strtolower($verify);
+         $verify_session = strtolower($_SESSION['verify']);
+         if(($verify_user != $verify_session) || empty($verify_session))
+         {
+             unset($_SESSION['verify']);
+             output(4, '' , '验证码错误');
+         }
+        unset($_SESSION['verify']);
+
         $salt = salt();
         $password = md5($password.$salt);
         $time = time();
