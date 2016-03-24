@@ -9,12 +9,6 @@ use vendor\MyException;
  */
 class Db
 {
-    private static $username = 'root';
-    private static $password = '123456';
-    private static $host     = 'localhost';
-    private static $port     = 3306;
-    private static $dbtype  = 'mysql';
-    private static $dbnam    = 'w37_psz';
     private static $instance;
 
     private function __construct()
@@ -24,10 +18,11 @@ class Db
 
     public static function connect()
     {
-        $dsn = self::$dbtype . ':host=' . self::$host. ':' . self::$port
-                . ';' . 'dbname=' . self::$dbnam;
+        $config = C('mysql');
+        $dsn = $config['dbtype'] . ':host=' . $config['host'] . ':' . $config['port']
+                . ';' . 'dbname=' . $config['database'];
         try {
-            self::$instance = new \PDO($dsn, self::$username, self::$password,
+            self::$instance = new \PDO($dsn, $config['username'], $config['password'],
                 [
                     \PDO::ATTR_PERSISTENT =>true ,
                     \PDO::ATTR_ERRMODE => true,
