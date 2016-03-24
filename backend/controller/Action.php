@@ -22,7 +22,7 @@ class Action
     {
         if ($tpl==='') {
             //var_dump('view/' . substr(static::class,'11') . '.php');
-            require 'view/' . substr(static::class, '11') . '.php';
+            require 'view/' . substr(static::$class, '11') . '.php';
         }
         else {
             require 'view/' . $tpl . '.php';
