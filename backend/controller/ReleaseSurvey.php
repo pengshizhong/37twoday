@@ -16,7 +16,7 @@ class ReleaseSurvey extends Action
 {
     public function run()
     {
-        $data = I('get.data');
+        $data = I('post.data');
         if (empty($data)) {
             exit;
         }
