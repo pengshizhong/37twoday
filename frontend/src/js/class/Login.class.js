@@ -48,7 +48,7 @@ Login.prototype = {
             error: function(error)
             {
                 // console.log("error:"+error);
-                alert("重复、注册失败")
+                alert("重复、注册失败")    
             }  
         });
         
