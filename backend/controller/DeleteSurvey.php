@@ -27,7 +27,6 @@ class DeleteSurvey extends Action
         $survey->survey_id = $survey_id;
         unset($data);
 
-//        $survey->value = $data;
         $survey->delete(['survey_id' => $survey->survey_id]);
 
         output(0,'','问卷删除成功');

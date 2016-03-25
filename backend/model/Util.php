@@ -58,7 +58,7 @@ class Util
         return $data;
     }
 
-    public function update()
+    public function update(array $where=[])
     {
         $table_name = $this->getTableName();
         $sql = 'UPDATE ' . $table_name . ' SET ';
@@ -68,8 +68,14 @@ class Util
             }
         }
         $sql = substr($sql, 0, strlen($sql)-1);
-        $sql = $sql . ' WHERE id=:id';
+        $sql = $sql . ' WHERE ';
         $data = $this->getBindData();
+        foreach ($where as $key=>$value) {
+            $data[':' . $key] = $value;
+            $sql = $sql . $key . '=:' . $key;
+        }
+
+
         return Db::query($sql, $data, false);
     }
 
