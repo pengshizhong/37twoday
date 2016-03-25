@@ -100,7 +100,7 @@
 					<li class="info-text">密码</li>
 					<li><input type="password" placeholder="6-20位数字、字母或下划线组合" class="input" id="lpassword"></input><span class="errormsg" id="password-e"></span></li>
 					<li class="info-text codecss">请输入验证码</li>
-					<li class="codecss"><img width="80px" height="27px;" title="点击刷新" src="" align="absbottom"/><input class="input" id="lverify"></input></li>
+					<li class="codecss"><img width="80px" height="27px;" title="点击刷新" src="../backend/index.php?action=verifydisplay&d='+Math.random();" onclick="this.src='../backend/index.php?action=verifydisplay&d='+Math.random();" align="absbottom"/><input class="input" id="lverify"></input></li>
 				</ul>
 				<button id="loginbtn">登录</button>
 			</li>
@@ -113,7 +113,7 @@
 					<li class="info-text">再次输入密码</li>
 					<li><input type="password" placeholder="6-20位数字、字母或下划线组合" class="input" id="rrepassword"></input><span class="errormsg" id="password-e"></span></li>
 					<li class="info-text codecss">请输入验证码</li>
-					<li class="codecss"><img width="80px" height="27px;" title="点击刷新" src="" align="absbottom"/><input class="input" id="rverify"></input></li>
+					<li class="codecss"><img width="80px" height="27px;" title="点击刷新" src="../backend/index.php?action=verifydisplay&d='+Math.random();" onclick="this.src='../backend/index.php?action=verifydisplay&d='+Math.random();" align="absbottom"/><input class="input" id="rverify"></input></li>
 				</ul>
 				<button id="registerbtn">注册</button>
 			</li>

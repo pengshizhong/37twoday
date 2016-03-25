@@ -40,7 +40,6 @@ Login.prototype = {
                     store.set('username',response.data.username);
                     $(".handleuser").hide();
                     $(".mask").hide();
-
                 }else{
                     alert("登录失败："+response.msg);    
                 }
