@@ -9,10 +9,12 @@
 namespace controller;
 
 use model\Answer;
+use model\Survey;
 class Chart extends Action
 {
     public function run()
     {
+        
         $data = I('get.data');
         $data = stripcslashes($data);
         $data = json_decode($data,true);
@@ -20,6 +22,9 @@ class Chart extends Action
         $survey = new Answer();
         $tmp = $survey->select();
         $this->analyze($tmp, $survey_id);
+        $tmp_survey = new Survey();
+        $tmp_survey = $tmp_survey->select(['survey_id' => $survey_id]);
+        p($tmp_survey);
     }
 
     private function analyze($tmp, $survey_id)
@@ -69,8 +74,22 @@ class Chart extends Action
         $data = [];
         $data['total'] = $count['total'];
         unset($count['total']);
-        $data['count'] = json_encode($count);
+        $res = array();
+        $i = 1;
+        foreach($count as $key => $value)
+        {
+            $litle = array();
+            foreach($value as $k => $v)
+            {
+                $litle[] = array($k, $v);
+            }
+            $res[$i] = $litle;
+            $i++;
+        }
+        $data['count'] = json_encode($res);
         self::$s->assign("data", $data);
         self::$s->display('chart.html');
     }
+    
+    
 }

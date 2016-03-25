@@ -15,14 +15,14 @@ class Register extends Action
 {
     public function run()
     {
-        $res = $this->checkIp(40);
+        $res = $this->checkIp();
          if(!$res)
          {
              output(6, 0, "注册用户名修改频繁");
          }
-        $workid = I("get.workid");
-        $password = I("get.password");
-        $comfirm_password = I("get.comfirm_password");
+        $workid = I("post.workid");
+        $password = I("post.password");
+        $comfirm_password = I("post.repassword");
         $user = new User();
         $res = $user->select(['WORK_ID' => $workid]);
         //账号验证
@@ -36,6 +36,10 @@ class Register extends Action
         if ( !preg_match('/^[a-zA-Z0-9\_]{6,20}$/', $password) ) {
             output(8, 0, '密码格式不正确!');
         }
+        if($password != $comfirm_password)
+        {
+            output(9, 0, "密码不匹配");
+        }
         
         //工号验证
         $res_num = preg_match('/\d/', $workid);
@@ -44,9 +48,9 @@ class Register extends Action
         {
             output(2, 0, '工号必须为正整数');
         }
-        if($num_len <3 || $num_len > 9)
+        if($num_len <6 || $num_len > 20)
         {
-            output(3, 0, '工号长度必须在3-9位之间');
+            output(3, 0, '工号长度必须在6-20位之间');
         }
 
 
@@ -55,12 +59,11 @@ class Register extends Action
          $verify = I('get.verify');
          $verify_user = strtolower($verify);
          $verify_session = strtolower($_SESSION['verify']);
-         echo $verify_session;die;
-         if(($verify_user != $verify_session) || empty($verify_session))
-         {
-             unset($_SESSION['verify']);
-             output(4, '' , '验证码错误');
-         }
+//          if(($verify_user != $verify_session) || empty($verify_session))
+//          {
+//              unset($_SESSION['verify']);
+//              output(5, '' , '验证码错误');
+//          }
         unset($_SESSION['verify']);
 
         $salt = salt();
