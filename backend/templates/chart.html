@@ -14,7 +14,7 @@
     <div id="container1"></div>
 </body>
 <script>
-    function draw(divid,data) {
+    function draw(divid,data,qtitle) {
         //console.log(data);
         $("#"+divid).highcharts({
             chart: {
@@ -23,7 +23,7 @@
                 plotShadow: false
             },
             title: {
-                text: 'Browser market shares at a specific website, 2010'
+                text: qtitle
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -57,10 +57,12 @@
 　　}
     var data= <{$data['count']}>;
     var total= <{$data['total']}>;
+    var question=<{$data['questions']}>;
     arr = Object.keys(data);
+    //console.log(data);
     for (var i=1;i <= arr.length;i++) {
         addElementDiv("chart", 'container' + i);
-        draw('container' + i,data[i]);
+        draw('container' + i,data[i],question[i]['qtitle']);
     }
 </script>
 

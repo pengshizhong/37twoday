@@ -21,13 +21,16 @@ class Chart extends Action
         $survey_id = $data['surveyid'];
         $survey = new Answer();
         $tmp = $survey->select();
-        $this->analyze($tmp, $survey_id);
         $tmp_survey = new Survey();
         $tmp_survey = $tmp_survey->select(['survey_id' => $survey_id]);
-        p($tmp_survey);
+        $surveyinfo = json_decode($tmp_survey->value,true);
+        $questions = $surveyinfo['questions'];
+        $this->analyze($tmp, $survey_id, $questions);
+
+        //p($tmp_survey);
     }
 
-    private function analyze($tmp, $survey_id)
+    private function analyze($tmp, $survey_id, $questions)
     {
         $count = [];
         $count['total'] = count($tmp);
@@ -72,15 +75,15 @@ class Chart extends Action
             }
         }
         $data = [];
+        $data['questions'] = json_encode($questions);
+        //var_dump($questions);
         $data['total'] = $count['total'];
         unset($count['total']);
         $res = array();
         $i = 1;
-        foreach($count as $key => $value)
-        {
+        foreach ($count as $key => $value) {
             $litle = array();
-            foreach($value as $k => $v)
-            {
+            foreach ($value as $k => $v) {
                 $litle[] = array($k, $v);
             }
             $res[$i] = $litle;
