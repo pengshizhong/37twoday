@@ -1,0 +1,296 @@
+@charset "UTF-8";
+html, body {
+  height: 100%;
+}
+
+body {
+  font-size: 62.5%;
+  font-family: "Microsoft YaHei", "微软雅黑", "STXihei", "华文细黑";
+}
+
+.nav-wrapper .brand-logo {
+  left: 50px;
+  margin-left: 50px;
+}
+
+.nav-wrapper ul {
+  margin-right: 100px;
+}
+
+nav li a {
+  font-size: 2.0em;
+  text-align: center;
+  padding: 0 20px 0 20px;
+}
+
+nav li i {
+  margin-right: 10px;
+}
+
+nav {
+  background-color: #4db6ac;
+}
+
+nav .button-collapse {
+  left: 10px;
+}
+
+.content {
+  padding: 30px;
+  margin: 0 auto;
+  position: relative;
+  height: 100%;
+  width: 90%;
+}
+
+.mycard {
+  width: 20%;
+  float: left;
+  margin: 20px;
+}
+
+.title {
+  font-size: 2em;
+}
+
+.card-action a {
+  font-size: 1.5em;
+}
+
+.mask {
+  width: 100%;
+  height: 100%;
+  background: url("../img/bg_mask.jpg") no-repeat left top;
+  background-size: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  display: none;
+}
+
+.handleuser {
+  width: 366px;
+  height: 440px;
+  background-color: red;
+  position: fixed;
+  margin: 0 auto;
+  top: 50%;
+  margin-top: -220px;
+  z-index: 999099999;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  padding: 20px 20px 20px 20px;
+  left: 50%;
+  margin-left: -183px;
+  display: none;
+}
+
+.user-title {
+  height: 30px;
+  margin: 0 auto;
+  line-height: 30px;
+  width: 200px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.user-title li {
+  float: left;
+  /* margin-left: 50px; */
+  font-size: 1.7em;
+  font-weight: 700;
+  color: #4db6ac;
+  width: 100px;
+  /* border-left: 1px solid; */
+  cursor: pointer;
+}
+
+.user-title li:hover {
+  background-color: #4db6ac;
+  color: white;
+}
+
+.tab-active {
+  border-bottom: 3px solid #4db6ac;
+}
+
+.info-text {
+  font-size: 1.5em;
+  line-height: 27px;
+}
+
+.user-content li {
+  margin: 10px 0px 10px 0px;
+  width: 100%;
+  height: 27px;
+}
+
+.user-content input {
+  padding-left: 10px;
+  width: 310px;
+  height: 27px;
+  padding-left: 10px;
+  text-align: left;
+}
+
+.codecss input {
+  position: absolute;
+  width: 100px;
+  /* margin-left: 30px; */
+  margin: 0 0 0 30px;
+}
+
+#registerbtn, #loginbtn {
+  position: absolute;
+  margin-left: -100px;
+  width: 200px;
+  height: 30px;
+  padding: 5px;
+  border: none;
+  color: white;
+  margin-top: 30px;
+  font-weight: 700;
+  left: 50%;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background: linear-gradient(120deg, #4db6ac, rgba(77, 182, 172, 0.4));
+  background: -webkit-linear-gradient(120deg, #4db6ac, rgba(77, 182, 172, 0.4));
+  background: -moz-linear-gradient(120deg, #4db6ac, rgba(77, 182, 172, 0.4));
+  bottom: 20px;
+}
+
+#registerbtn:hover, #loginbtn:hover {
+  background-color: #4db6ac;
+}
+
+.user-content #register-content {
+  display: none;
+}
+
+.errormsg {
+  position: absolute;
+  right: 0;
+  margin-right: 45px;
+  text-align: right;
+  line-height: 2em;
+  color: #F44336;
+  margin-top: -30px;
+}
+
+.survey-content {
+  width: 800px;
+  background-color: white;
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  margin: 0 auto;
+}
+
+.survey-content ul {
+  padding: 30px;
+}
+
+.edit-type {
+  position: fixed;
+  left: 50px;
+  top: 94px;
+  width: 100px;
+  height: 200px;
+  border: 1px solid #4db6ac;
+  padding: 20px;
+}
+
+.edit-type li {
+  text-align: center;
+  margin: 26.5px 0 26.5px 0;
+  cursor: pointer;
+}
+
+.edit-type li:hover {
+  border-bottom: 3px solid #4db6ac;
+}
+
+.survey-content .title {
+  height: 90px;
+}
+
+.survey-content .title input {
+  width: 600px;
+  text-align: center;
+  /* height: 30px; */
+  margin: 0 auto;
+  position: relative;
+  float: 50%;
+  left: 50%;
+  margin-left: -300px;
+}
+
+.questions h3 {
+  font-size: 3.0em;
+  font-weight: 600;
+  margin: 0;
+}
+
+.questions {
+  padding: 20px;
+  background: white;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  margin: 20px 0 20px 0;
+}
+
+.questions .odelete {
+  margin-left: 50px;
+  color: red;
+  cursor: pointer;
+  float: right;
+}
+
+.questions .oedit {
+  height: 25px;
+  width: 400px;
+  margin: 0;
+  margin-left: 30px;
+  margin-bottom: 10px;
+  display: none;
+}
+
+.questions .odelete:hover {
+  font-weight: 700;
+}
+
+.questions .qdelete {
+  cursor: pointer;
+}
+
+.questions .add {
+  cursor: pointer;
+}
+
+.survey-content .editbox {
+  padding: 0;
+  height: 20px;
+}
+
+.survey-content .editbox li {
+  float: left;
+  margin: 0 20px 20px 0;
+  cursor: pointer;
+}
+
+.survey-content .editbox li:hover {
+  color: #4db6ac;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.redcolor {
+  color: red;
+}
+
+.questions textarea {
+  height: 10em;
+  margin-bottom: 30px;
+}
