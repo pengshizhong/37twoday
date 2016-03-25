@@ -66,12 +66,10 @@ class Chart extends Action
                 }
             }
         }
-        //$this->getView($count,'index.html');
         $data = [];
         $data['total'] = $count['total'];
         unset($count['total']);
         $data['count'] = json_encode($count);
-//        var_dump($count);
         self::$s->assign("data", $data);
         self::$s->display('chart.html');
     }

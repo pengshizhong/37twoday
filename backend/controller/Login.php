@@ -19,9 +19,9 @@ class Login extends CheckIp
         {
             output(6, 0, "注册用户名修改频繁");
         }
-        $workid = I("get.workid");
-        $password = I("get.password");
-        $verifyl = I("get.verify");
+        $workid = I("post.workid");
+        $password = I("post.password");
+        $verifyl = I("post.verify");
         $verifyl_check = $_SESSION['verify'];
 //         if($verifyl != $verifyl_check || empty($verifyl_check))
 //         {
