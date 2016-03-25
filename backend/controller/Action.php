@@ -48,10 +48,10 @@ class Action
         self::$s->compile_dir = C("smarty.compile_dir");
         self::$s->left_delimiter = C("smarty.left_delimiter");
         self::$s->right_delimiter = C("smarty.right_delimiter");
-//        self::$me = new \Memcache;
-//        $host = C("memcache.host");
-//        $port = C("memcache.port");
-//        self::$me->connect($host,$port,MEMCACHE_COMPRESSED);
+        self::$me = new \Memcache;
+        $host = C("memcache.host");
+        $port = C("memcache.port");
+        self::$me->connect($host,$port,MEMCACHE_COMPRESSED);
     }
 
     public function getJson($data,$isarray=false)

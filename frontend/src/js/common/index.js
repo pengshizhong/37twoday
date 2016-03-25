@@ -61,6 +61,7 @@ $(function(){
 				$("#login-content").hide();
 				$("#register-content").show();
 				// updatePara();
+				console.log('开始调用注册函数');
 				beginRegister();
 			}
 
@@ -76,81 +77,81 @@ $(function(){
 
 		//对每个input添加验证规则
 		//
-		if (type == "_register") {
-			$("#rusername").blur(function(){
-				console.log("verify registerbtn1");
-				validator.add($rusername.get(0),'isNonEmpty','用户名不能为空');
-				validator.add($rusername.get(0),'isRight','用户名格式错误');
-				validator.add($rusername.get(0),'isExist','用户名已存在');
-				var msg = validator.start();
-				if (msg) {
-					correct.username = false;
-					$(this).next().html(msg);
-				}else{
-					correct.username = true;
-				}
-				validator.clear();
-			});
+		//if (type == "_register") {
+			//$("#rusername").blur(function(){
+			//	console.log("verify registerbtn1");
+			//	validator.add($rusername.get(0),'isNonEmpty','用户名不能为空');
+			//	validator.add($rusername.get(0),'isRight','用户名格式错误');
+			//	validator.add($rusername.get(0),'isExist','用户名已存在');
+			//	var msg = validator.start();
+			//	if (msg) {
+			//		correct.username = false;
+			//		$(this).next().html(msg);
+			//	}else{
+			//		correct.username = true;
+			//	}
+			//	validator.clear();
+			//});
+            //
+			//$("#rpassword").blur(function(){
+			//	// console.log("verify registerbtn2");
+			//	validator.add($rpassword.get(0),'isNonEmpty','密码不能为空');
+			//	validator.add($rpassword.get(0),'isRight','密码格式错误');
+			//	var msg = validator.start();
+			//	if (msg) {
+			//		correct.password = false;
+			//		$(this).next().html(msg);
+			//	}else{
+			//		correct.password = true;
+			//	}
+			//	validator.clear();
+			//});
 
-			$("#rpassword").blur(function(){
-				// console.log("verify registerbtn2");
-				validator.add($rpassword.get(0),'isNonEmpty','密码不能为空');
-				validator.add($rpassword.get(0),'isRight','密码格式错误');
-				var msg = validator.start();
-				if (msg) {
-					correct.password = false;
-					$(this).next().html(msg);
-				}else{
-					correct.password = true;
-				}
-				validator.clear();
-			});
-
-			$("#rrepassword").blur(function(){
-				validator.add($rrepassword.get(0),'isNonEmpty','重复输入密码不能为空');
-				if(!$rpassword.get(0)){
-					correct.password = false;
-					$(this).next().html("请先在上面输入密码");
-				}else{
-					validator.add($rpassword.get(0),'isEqual:'+$rpassword.get(0).value,'密码不同');
-				}
-				var msg = validator.start();
-				if (msg) {
-					correct.password = false;
-					$(this).next().html(msg);
-				}else{
-					correct.password = true;
-				}
-				validator.clear();
-				
-			});
-		}else if(type == "_login"){
-			$("#lusername").blur(function(){
-				validator.add($lusername.get(0),'isNonEmpty','用户名不能为空');
-				validator.add($lusername.get(0),'isRight','用户名格式错误');
-				var msg = validator.start();
-				if (msg) {
-					correct.username = false;
-					$(this).next().html(msg);
-				}else{
-					correct.username = true;
-				}
-				validator.clear();
-			});
-
-			$("#lpassword").blur(function(){
-				validator.add($lpassword.get(0),'isNonEmpty','密码不能为空');
-				validator.add($lpassword.get(0),'isRight','密码格式错误');
-				var msg = validator.start();
-				if (msg) {
-					correct.password = false;
-					$(this).next().html(msg);
-				}else{
-					correct.password = true;
-				}
-				validator.clear();
-			});
-		}
+			//$("#rrepassword").blur(function(){
+			//	validator.add($rrepassword.get(0),'isNonEmpty','重复输入密码不能为空');
+			//	if(!$rpassword.get(0)){
+			//		correct.password = false;
+			//		$(this).next().html("请先在上面输入密码");
+			//	}else{
+			//		validator.add($rpassword.get(0),'isEqual:'+$rpassword.get(0).value,'密码不同');
+			//	}
+			//	var msg = validator.start();
+			//	if (msg) {
+			//		correct.password = false;
+			//		$(this).next().html(msg);
+			//	}else{
+			//		correct.password = true;
+			//	}
+			//	validator.clear();
+			//
+			//});
+		//}else if(type == "_login"){
+		//	$("#lusername").blur(function(){
+		//		validator.add($lusername.get(0),'isNonEmpty','用户名不能为空');
+		//		validator.add($lusername.get(0),'isRight','用户名格式错误');
+		//		var msg = validator.start();
+		//		if (msg) {
+		//			correct.username = false;
+		//			$(this).next().html(msg);
+		//		}else{
+		//			correct.username = true;
+		//		}
+		//		validator.clear();
+		//	});
+        //
+		//	$("#lpassword").blur(function(){
+		//		validator.add($lpassword.get(0),'isNonEmpty','密码不能为空');
+		//		validator.add($lpassword.get(0),'isRight','密码格式错误');
+		//		var msg = validator.start();
+		//		if (msg) {
+		//			correct.password = false;
+		//			$(this).next().html(msg);
+		//		}else{
+		//			correct.password = true;
+		//		}
+		//		validator.clear();
+		//	});
+		//}
 		
 
 		$(".form ul li").on("focus",".input",function()
@@ -190,9 +191,11 @@ $(function(){
 		var login = new Login();
 		//登录
 		$("#loginbtn").click(function(){
-			if (canLogin()) {
-				Login.login($lusername.get(0).value, $lpassword.get(0).value, $lverify.get(0).value);
-			}else{
+			//if (canLogin()) {
+			if (1) {
+				login.login($lusername.get(0).value, $lpassword.get(0).value, $lverify.get(0).value);
+			}
+			else {
 				$lusername.trigger('blur');
 				$lpassword.trigger('blur');
 				// $repassword.trigger('blur');
@@ -218,13 +221,15 @@ $(function(){
 			repassword: false,
 			verify: false
 		};
+		console.log('注册');
 		Validate("_register");
 		var register = new Register();
 		//注册
 		$registerbtn.click(function()
 		{
-			console.log("register");
-			if (canRegister()) {
+			console.log(canRegister());
+			//if (canRegister()) {
+			if (1) {
 				register.register($rusername.get(0).value, $rpassword.get(0).value, $rrepassword.get(0).value, $rverify.get(0).value);
 			}else{
 				$rusername.trigger('blur');
@@ -236,6 +241,7 @@ $(function(){
 
 		var canRegister = function()
 		{
+			//console.log(corr);
 			for(var key in correct) {
 				if (!correct[key]) {
 					return false;

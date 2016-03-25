@@ -22,8 +22,9 @@ Register.prototype = {
 	 */
 	register: function(username, password, repassword, verify)
 	{
+		console.log('register ajax start');
 		$.ajax({
-			url: "../backend/index.php?action=register",
+			url: "/index.php?action=register",
 			type: "post",
 			datatype: "json",
 			data: {
@@ -34,8 +35,10 @@ Register.prototype = {
 			},
 			success: function(response)
 			{
-			
+
 				console.log(response);
+				var response = eval("("+response+")");
+				//console.log(a);
 				if (response.code == 0) {
 					Materialize.toast('注册成功!欢迎你!', 4000);
 					if (!$("#login-title").haveClass("tab-active")) {

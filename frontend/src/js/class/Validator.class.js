@@ -98,7 +98,7 @@ var Validator= function()
 		{
 			var value = dom.value;
 			$.ajax({
-				url: "../backend/index.php?action=checkname",
+				url: "/index.php?action=checkName",
 				type: "post",
 				datatype: "json",
 				data: {

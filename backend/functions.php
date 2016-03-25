@@ -275,7 +275,7 @@ function output($code, $data, $msg)
         'data' => $data,
         'msg'  => $msg
     );
-    echo json_encode($arr);
+    echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     exit;
 }
 

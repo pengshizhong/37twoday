@@ -43,12 +43,17 @@ class Login extends CheckIp
             'WORK_ID' => $workid
         );
         $info = $user->select($where);
+        if (!$info) {
+            output('11','','没有这个用户');
+        }
         $user_id = $info->user_id;
         $workid = $info->work_id;
         $salt = $info->salt;
         $password_c = $info->password;
-        $password_v = md5($password.$salt);
-        if($password_c == $password_v)
+//        var_dump($password_c);
+        $password_v = md5($password . $salt);
+//        var_dump($password_v);
+        if($password_c != $password_v)
         {
             output(10, 0, "密码错误");
         }
