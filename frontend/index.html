@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- IE浏览器运行最新的渲染模式 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="stylesheet" type="text/css" href="src/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="src/css/materialize.css">
+	<link rel="stylesheet" type="text/css" href="src/css/index.css">
+	<title>Survey</title>
+</head>
+<body>
+	<!-- 导航条 -->
+	<nav>
+		<div class="nav-wrapper navbar-fixed">
+			<a href="#" class="brand-logo">Logo</a>
+			<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fa fa-bars"></i></a>
+	      	<ul class="right hide-on-med-and-down">
+		        <li><a href="#"><i class="fa fa-user"></i>首页</a></li>
+		        <li><a href="addSurvey.html"><i class="fa fa-user"></i>问卷</a></li>
+		        <li><a href="#"><i class="fa fa-user"></i>帮助</a></li>
+		        <li><a href="#" class="userbtn"><i class="fa fa-user"></i><span class="s_username">登录/注册</span></a></li>
+	      	</ul>
+	      	<ul class="side-nav" id="mobile-demo">
+		        <li><a href="#">首页</a></li>
+		        <li><a href="addSurvey.html">问卷</a></li>
+		        <li><a href="#">帮助</a></li>
+		        <li><a href="#" class="userbtn"><i class="fa fa-user"></i><span class="s_username">登录/注册</span></a></li>     
+	      	</ul>
+	    </div>
+	</nav>
+
+	<!-- 内容区域 -->
+	<div class="content">
+        <div class="col s12 m6 mycard">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <p class="survey-title">LNMP课问卷调查</p>
+            </div>
+            <div class="card-action">
+              <a href="#" class="survey-change">修改</a>
+              <a href="#" class="survey-delete">删除</a>
+              <a href="#" class="survey-release">发布</a>
+            </div>
+          </div>
+		</div>
+		<div class="col s12 m6 mycard">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <p class="survey-title">LNMP课问卷调查</p>
+            </div>
+            <div class="card-action">
+              <a href="#" class="survey-change">修改</a>
+              <a href="#" class="survey-delete">删除</a>
+              <a href="#" class="survey-release">发布</a>
+            </div>
+          </div>
+		</div>
+		<div class="col s12 m6 mycard">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <p class="survey-title">LNMP课问卷调查</p>
+            </div>
+            <div class="card-action">
+              <a href="#" class="survey-change">修改</a>
+              <a href="#" class="survey-delete">删除</a>
+              <a href="#" class="survey-release">发布</a>
+            </div>
+          </div>
+		</div>
+		<div class="col s12 m6 mycard">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <p class="survey-title">LNMP课问卷调查</p>
+            </div>
+            <div class="card-action">
+              <a href="#" class="survey-change">修改</a>
+              <a href="#" class="survey-delete">删除</a>
+              <a href="#" class="survey-release">发布</a>
+            </div>
+          </div>
+		</div>
+
+	</div>
+	<div class="mask"></div>
+
+	<!-- tab登录注册 -->
+	<div class="handleuser">
+		<ul class="user-title">
+			<li id="login-title" class="tab-active login-title" data-link="login-content">登录</li>
+			<li id="register-title" class="register-title" data-link="register-content">注册</li>
+		</ul>
+		<ul class="user-content">
+			<li id="login-content">
+				<ul>
+					<li class="info-text">用户名</li>
+					<li><input type="text" placeholder="lo6-20位数字、字母或下划线组合" class="input" id="lusername"></input><span class="errormsg" id="username-e"></span></li>
+					<li class="info-text">密码</li>
+					<li><input type="password" placeholder="6-20位数字、字母或下划线组合" class="input" id="lpassword"></input><span class="errormsg" id="password-e"></span></li>
+					<li class="info-text codecss">请输入验证码</li>
+					<li class="codecss"><img width="80px" height="27px;" title="点击刷新" src="" align="absbottom"/><input class="input" id="lverify"></input></li>
+				</ul>
+				<button id="loginbtn">登录</button>
+			</li>
+			<li id="register-content">
+				<ul>
+					<li class="info-text">用户名</li>
+					<li><input type="text" placeholder="re6-20位数字、字母或下划线组合" class="input" id="rusername"></input><span class="errormsg" id="username-e"></span></li>
+					<li class="info-text">密码</li>
+					<li><input type="password" placeholder="6-20位数字、字母或下划线组合" class="input" id="rpassword"></input><span class="errormsg" id="password-e"></span></li>
+					<li class="info-text">再次输入密码</li>
+					<li><input type="password" placeholder="6-20位数字、字母或下划线组合" class="input" id="rrepassword"></input><span class="errormsg" id="password-e"></span></li>
+					<li class="info-text codecss">请输入验证码</li>
+					<li class="codecss"><img width="80px" height="27px;" title="点击刷新" src="" align="absbottom"/><input class="input" id="rverify"></input></li>
+				</ul>
+				<button id="registerbtn">注册</button>
+			</li>
+		</ul>
+	</div>
+
+	<script type="text/javascript" src="src/js/lib/store.js"></script>
+	<script type="text/javascript" src="src/js/lib/jquery.js"></script>
+	<script type="text/javascript" src="src/js/lib/materialize.js"></script>
+	<script type="text/javascript" src="src/js/class/Validator.class.js"></script>
+	<script type="text/javascript" src="src/js/class/Register.class.js"></script>
+	<script type="text/javascript" src="src/js/class/Login.class.js"></script>
+	<script type="text/javascript" src="src/js/common/index.js"></script>
+	<script type="text/javascript">
+		 $(".button-collapse").sideNav();
+	</script>
+</body>
+</html>

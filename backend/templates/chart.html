@@ -10,10 +10,12 @@
     <script src="http://cdn.hcharts.cn/highmaps/highmaps.js"></script> -->
 </head>
 
-
-<div id="container1"></div>
+<body id="chart">
+    <div id="container1"></div>
+</body>
 <script>
-    function draw(divid,$data) {
+    function draw(divid,data) {
+        //console.log(data);
         $("#"+divid).highcharts({
             chart: {
                 plotBackgroundColor: null,
@@ -42,36 +44,22 @@
             series: [{
                 type: 'pie',
                 name: 'Browser share',
-                data: [
-                    ['Firefox',   45.0],
-                    ['IE',       26.8],
-                    {
-                        name: 'Chrome',
-                        y: 12.8,
-                        sliced: true,
-                        selected: true
-                    },
-                    ['Safari',    8.5],
-                    ['Opera',     6.2],
-                    ['Others',   0.7]
-                ]
+                data: data
             }]
         });
     }
+
+    function addElementDiv(obj, name) {
+        var parent = document.getElementById(obj);
+        var div = document.createElement("div");
+        div.setAttribute("id", name);   
+        parent.appendChild(div);
+　　}
     var data= <{$data['count']}>;
     var total= <{$data['total']}>;
-    var a = eval("("+data+")");
-    //draw('container1', data[1]);
-    var i = 0;
-    console.log(a);
-    while(i <= 4)
-    {
-
-        draw('container' + i,data[i]);
-        i++;
-    }
-    for (var i=1;i <= data.length;i++) {
-        console.log("ok");
+    arr = Object.keys(data);
+    for (var i=1;i <= arr.length;i++) {
+        addElementDiv("chart", 'container' + i);
         draw('container' + i,data[i]);
     }
 </script>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- IE浏览器运行最新的渲染模式 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="stylesheet" type="text/css" href="src/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="src/css/materialize.css">
+	<link rel="stylesheet" type="text/css" href="src/css/index.css">
+	<title>Survey</title>
+</head>
+<body>
+	<!-- 导航条 -->
+	<nav>
+		<div class="nav-wrapper navbar-fixed">
+			<a href="#" class="brand-logo">Logo</a>
+			<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fa fa-bars"></i></a>
+	      	<ul class="right hide-on-med-and-down">
+		        <li><a href="index.html"><i class="fa fa-user"></i>首页</a></li>
+		        <li><a href="addSurvey.html"><i class="fa fa-user"></i>问卷</a></li>
+		        <li><a href="#"><i class="fa fa-user"></i>帮助</a></li>
+		        <li><a href="#" id="userBtn"><i class="fa fa-user"></i><span class="s_username">登录/注册</span></a></li>
+	      	</ul>
+	      	<ul class="side-nav" id="mobile-demo">
+		        <li><a href="index.html">首页</a></li>
+		        <li><a href="#">问卷</a></li>
+		        <li><a href="#">帮助</a></li>
+		        <li><a href="#">登录/注册</a>   	
+ 				</li>       
+	      	</ul>
+	    </div>
+	</nav>
+
+	<!-- 内容区域 -->
+	<div class="content">
+        <ul class="edit-type">
+        	<li>单选题</li>
+        	<li>多选题</li>
+        	<li>问答题</li>
+        </ul>
+        <div class="survey-content">
+        	<ul>
+        		<li class="title"><input id="survey-title" placeholder="问卷题目"></input></li>
+        		<li class="questions type-radio">
+        			<h3>Q1</h3>
+        			<input placeholder="问题"></input>
+        			<ul>
+        				<li>
+        					<input type="radio" name="radio"></input>
+        					<label for>选项1</label>
+        					<input type="text" class="oedit"></input>
+        					<span class="odelete">删除</span>
+        				</li>
+        				<li>
+        					<input type="radio" name="radio"></input>
+        					<label for>选项2</label>
+        					<input type="text" class="oedit"></input>
+        					<span class="odelete">删除</span>
+        				</li>
+        				<li>
+        					<input type="radio" name="radio"></input>
+        					<label for>选项3</label>
+        					<input type="text" class="oedit"></input>
+        					<span class="odelete">删除</span>
+        				</li>	
+        				<li>
+        					<input type="radio" name="radio"></input>
+        					<label for>选项4</label>
+        					<input type="text" class="oedit"></input>
+        					<span class="odelete">删除</span>
+        				</li>		       				
+        			</ul>
+        			<ul class="editbox">
+        				<li class="add">添加</li>
+        				<li class="qdelete">删除题目</li>
+                        <li class="istips">不需要填写备注</li>
+        			</ul>
+        		</li>
+
+        		<li class="questions type-checkbox">
+        			<h3>Q2</h3>
+        			<input placeholder="问题"></input>
+        			<ul>
+        				<li>
+        					<input type="checkbox" name="checkbox"></input>
+        					<label for>选项1</label>
+        					<input type="text" class="oedit"></input>
+        					<span class="odelete">删除</span>
+        				</li>
+        				<li>
+        					<input type="checkbox" name="checkbox"></input>
+        					<label for>选项2</label>
+        					<input type="text" class="oedit"></input>
+        					<span class="odelete">删除</span>
+        				</li>
+        				<li>
+        					<input type="checkbox" name="checkbox"></input>
+        					<label for>选项3</label>
+        					<input type="text" class="oedit"></input>
+        					<span class="odelete">删除</span>
+        				</li>	
+        				<li>
+        					<input type="checkbox" name="checkbox"></input>
+        					<label for>选项4</label>
+        					<input type="text" class="oedit"></input>
+        					<span class="odelete">删除</span>
+        				</li>		       				
+        			</ul>
+        			<ul class="editbox">
+        				<li class="add">添加</li>
+        				<li class="qdelete">删除题目</li>
+        				<li class="istips"><label>是否需要填写备注</label><input type="checkbox" name="checkbox"></input></li>
+        			</ul>
+        		</li>
+
+                <li class="questions type-input">
+                    <h3>Q3</h3>
+                    <input placeholder="问题"></input>
+                    <textarea name="textarea" cols=40 rows=9>
+                    </textarea>
+                    <ul class="editbox">
+                        <li class="qdelete">删除题目</li>
+                    </ul>
+                </li>
+
+                <li class="questions type-checkbox">
+                    <h3>Q2</h3>
+                    <input placeholder="问题"></input>
+                    <form action="#">
+                        <p>
+                            <input name="group1" type="radio" id="test1" />
+                            <label for="test1">Red</label>
+                            <input type="text" class="oedit"></input>
+                            <span class="odelete">删除</span>
+                        </p>
+                        <p>
+                            <input name="group1" type="radio" id="test2" />
+                            <label for="test2">Yellow</label>
+                        </p>
+                        <p>
+                            <input name="group1" type="radio" id="test3"  />
+                            <label for="test3">Green</label>
+                        </p>
+                    </form>
+                    <ul class="editbox">
+                        <li class="add">添加</li>
+                        <li class="qdelete">删除题目</li>
+                        <li class="istips"><label>是否需要填写备注</label><input type="checkbox" name="checkbox"></input></li>
+                    </ul>
+                </li>
+        	</ul>
+        </div>
+
+	</div>
+
+	  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>是否删除？</h4>
+      <p>删除将无法恢复</p>
+    </div>
+    <div class="modal-footer">
+		<a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">删除</a>
+		<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">取消</a>
+    </div>
+  </div>
+	
+	<script type="text/javascript" src="src/js/lib/store.js"></script>
+	<script type="text/javascript" src="src/js/lib/jquery.js"></script>
+	<script type="text/javascript" src="src/js/lib/materialize.js"></script>
+    <script type="text/javascript" src="src/js/common/_id.js"></script>
+	<script type="text/javascript" src="src/js/class/Validator.class.js"></script>
+	<script type="text/javascript" src="src/js/class/Register.class.js"></script>
+	<script type="text/javascript" src="src/js/class/Login.class.js"></script>
+	<script type="text/javascript" src="src/js/common/index.js"></script>
+	<script type="text/javascript" src="src/js/common/handleSurvey.js"></script>
+	<script type="text/javascript">
+		 $(".button-collapse").sideNav();
+	</script>
+</body>
+</html>
